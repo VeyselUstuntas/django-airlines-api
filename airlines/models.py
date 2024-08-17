@@ -1,7 +1,5 @@
 from django.db import models
 
-from django.db import models
-
 class Airline(models.Model):
     name = models.CharField(max_length=255)
     callsign = models.CharField(max_length=255)
