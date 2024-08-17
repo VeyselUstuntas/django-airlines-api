@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="my-4">Aircraft</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Manufacturer Serial Number</th>
+                <th>Type</th>
+                <th>Model</th>
+                <th>Operator Airline</th>
+                <th>Number of Engines</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aircraft in aircrafts %}
+                <tr>
+                    <td>{{ aircraft.manufacturer_serial_number }}</td>
+                    <td>{{ aircraft.type }}</td>
+                    <td>{{ aircraft.model }}</td>
+                    <td>{{ aircraft.operator_airline.name }}</td>
+                    <td>{{ aircraft.number_of_engines }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
