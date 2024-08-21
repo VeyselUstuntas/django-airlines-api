@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Create Aircraft
+{% endblock page_title %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-4">
+                <form action="{% url "aircraft_create" %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="serial_number" class="form-label">Serial Number</label>
+                        <input type="number" class="form-control" name="serial_number" placeholder="Enter Serial Number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Type</label>
+                        <input type="text" class="form-control" name="type" placeholder="Enter Type" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="model" class="form-label">Model</label>
+                        <input type="text" class="form-control" name="model" placeholder="Enter Model" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="engine" class="form-label">Number of Engine</label>
+                        <input type="number" class="form-control" name="engine" placeholder="Enter Number of Engine" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="op_airline" class="form-label">Operator Airline</label>
+                        <input type="number" class="form-control" name="op_airline" placeholder="Enter Operator Airline" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+

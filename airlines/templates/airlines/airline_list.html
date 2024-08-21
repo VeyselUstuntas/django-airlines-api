@@ -1,18 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "/airlines/css/style.css" %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+{% endblock %}
+
+{% block page_title %}
+    Airlines
+{% endblock page_title %}
+
 
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-10">
                 <h1 class="my-4">Airlines</h1>
+            </div>
+            <div class="col-2  d-flex align-items-center justify-content-end"> 
+                <a href="{% url "airline_create" %}" class="btn btn-info">Create Airline</a>
+            </div>
 
-            </div>
-            <div class="col-2 mt-4">
-                <button type="button" class="btn btn-light">Add Airlines</button>
-            </div>
+
         </div>
     </div>
-   
 
     <table class="table table-striped">
         <thead>
@@ -21,6 +34,8 @@
                 <th>Callsign</th>
                 <th>Founded Year</th>
                 <th>Base Airport</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -30,8 +45,19 @@
                     <td>{{ airline.callsign }}</td>
                     <td>{{ airline.founded_year }}</td>
                     <td>{{ airline.base_airport }}</td>
+                    <td>
+                        <div class="d-flex align-items-center justify-content-end">
+                            <a href="{% url "airline_edit" airline.id %}" class="btn bg-primary btn-sm">Edit</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class=" d-flex align-items-center justify-content-end">
+                            <a href="{% url "airline_delete" airline.id %}" class="btn bg-warning btn-sm">Delete</a>
+                        </div>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 {% endblock %}
+

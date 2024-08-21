@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Delete Airline
+{% endblock page_title %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p>
+                    <strong>{{airline.name}} </strong> isimli Airline'i Silmek İstiyor musnuz?
+                </p>
+                <form action="{% url "airline_delete" airline.id %}" method="POST"> 
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Yes!</button>
+                    <a href="{% url "airline-list" %}" class="btn btn-success">No</a>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

@@ -1,7 +1,30 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "/airlines/css/style.css" %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+{% endblock %}
+
+{% block page_title %}
+    Aircrafts
+{% endblock page_title %}
 
 {% block content %}
-    <h1 class="my-4">Aircraft</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                <h1 class="my-4">Aircraft</h1>
+
+            </div>
+            <div class="col-2  d-flex align-items-center justify-content-end"> 
+                <a href="{% url "aircraft_create" %}" class="btn btn-info">Create Aircraft</a>
+            </div>
+
+        </div>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -14,7 +37,7 @@
         </thead>
         <tbody>
             {% for aircraft in aircrafts %}
-                <tr>
+                <tr onclick="window.location.href='{% url "aircraft-list" %}'">
                     <td>{{ aircraft.manufacturer_serial_number }}</td>
                     <td>{{ aircraft.type }}</td>
                     <td>{{ aircraft.model }}</td>
@@ -24,4 +47,5 @@
             {% endfor %}
         </tbody>
     </table>
+    
 {% endblock %}
