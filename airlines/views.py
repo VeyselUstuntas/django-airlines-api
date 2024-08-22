@@ -36,8 +36,11 @@ class AircraftDetailView(generics.RetrieveUpdateDestroyAPIView):
 # -------------------------------------list methods 
 #@login_required
 def airline_list(request):
-    airlines = Airline.objects.all()
-    return render(request, 'airlines/airline_list.html', {'airlines': airlines})
+    if not request.user.is_authenticated:
+        return redirect("user_login")
+    else:
+        airlines = Airline.objects.all()
+        return render(request, 'airlines/airline_list.html', {'airlines': airlines})
 
 #@login_required
 def aircraft_list(request):
