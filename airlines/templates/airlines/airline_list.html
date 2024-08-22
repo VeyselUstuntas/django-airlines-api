@@ -36,6 +36,7 @@
                 <th>Base Airport</th>
                 <th></th>
                 <th></th>
+
             </tr>
         </thead>
         <tbody>
@@ -46,15 +47,13 @@
                     <td>{{ airline.founded_year }}</td>
                     <td>{{ airline.base_airport }}</td>
                     <td>
-                        <div class="d-flex align-items-center justify-content-end">
-                            <a href="{% url "airline_edit" airline.id %}" class="btn bg-primary btn-sm">Edit</a>
-                        </div>
+                        <a href="{% url "airline_edit" airline.id %}" class = "btn btn-primary btn-sm">Edit</a>
                     </td>
                     <td>
-                        <div class=" d-flex align-items-center justify-content-end">
-                            <a href="{% url "airline_delete" airline.id %}" class="btn bg-warning btn-sm">Delete</a>
-                        </div>
+                        <a href="{% url "airline_delete" airline.id %}" class="btn bg-warning btn-sm">Delete</a>
                     </td>
+
+
                 </tr>
             {% endfor %}
         </tbody>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "airlines",
+    "account",
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+# settings.py
+# LOGIN_URL = '/login/'
+# LOGIN_REDIRECT_URL = '/'

@@ -14,15 +14,15 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="name" class="form-label">Airline Name</label>
-                        <input type="text" class="form-control" name="name" value = {{airline.name}} placeholder="Enter Name" required>
+                        <input type="text" class="form-control" name="name" value = "{{airline.name}}" placeholder="Enter Name" required>
                     </div>
                     <div class="mb-3">
                         <label for="callsign" class="form-label">Callsign</label>
-                        <input type="text" class="form-control" name="callsign" value = {{airline.callsign}} placeholder="Enter Callsign" required>
+                        <input type="text" class="form-control" name="callsign" value = "{{airline.callsign}}" placeholder="Enter Callsign" required>
                     </div>
                     <div class="mb-3">
                         <label for="base_air" class="form-label">Base Airport</label>
-                        <input type="text" class="form-control" name="base_air" value = {{airline.base_airport}} placeholder="Enter Base Airport" required>
+                        <input type="text" class="form-control" name="base_air" value = "{{airline.base_airport}}" placeholder="Enter Base Airport" required>
                     </div>
                     <div class="mb-3">
                         <label for="founded_year" class="form-label">Airport Founded Year</label>

@@ -33,16 +33,24 @@
                 <th>Model</th>
                 <th>Operator Airline</th>
                 <th>Number of Engines</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for aircraft in aircrafts %}
-                <tr onclick="window.location.href='{% url "aircraft-list" %}'">
+                <tr onclick="window.location.href='{% url "aircraft_list" %}'">
                     <td>{{ aircraft.manufacturer_serial_number }}</td>
                     <td>{{ aircraft.type }}</td>
                     <td>{{ aircraft.model }}</td>
                     <td>{{ aircraft.operator_airline.name }}</td>
                     <td>{{ aircraft.number_of_engines }}</td>
+                    <td>
+                        <a href="{% url "aircraft_edit" aircraft.id %}" class = "btn btn-primary btn-sm">Edit</a>
+                    </td>
+                    <td>
+                        <a href="{% url "aircraft_delete" aircraft.id %}" class = "btn btn-warning btn-sm">Delete</a>
+                    </td> 
                 </tr>
             {% endfor %}
         </tbody>

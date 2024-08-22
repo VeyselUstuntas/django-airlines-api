@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Create Aircraft
+    Edit Aircraft
 {% endblock page_title %}
 
 
@@ -10,23 +10,23 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mt-4">
-                <form action="{% url "aircraft_create" %}" method="POST">
+                <form action="{% url "aircraft_edit" aircraft.id %}" method="POST">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="serial_number" class="form-label">Serial Number</label>
-                        <input type="number" class="form-control" name="serial_number" placeholder="Enter Serial Number" required>
+                        <input type="text" class="form-control" name="serial_number" value = {{aircraft.manufacturer_serial_number}} placeholder="Enter Serial Number" required>
                     </div>
                     <div class="mb-3">
                         <label for="type" class="form-label">Type</label>
-                        <input type="text" class="form-control" name="type" placeholder="Enter Type" required>
+                        <input type="text" class="form-control" name="type" value = "{{aircraft.type}}" placeholder="Enter Type" required>
                     </div>
                     <div class="mb-3">
                         <label for="model" class="form-label">Model</label>
-                        <input type="text" class="form-control" name="model" placeholder="Enter Model" required>
+                        <input type="text" class="form-control" name="model" value="{{ aircraft.model }}" placeholder="Enter Model" required>
                     </div>
                     <div class="mb-3">
                         <label for="engine" class="form-label">Number of Engine</label>
-                        <input type="number" class="form-control" name="engine" placeholder="Enter Number of Engine" required>
+                        <input type="text" class="form-control" name="engine" value = {{aircraft.number_of_engines}} placeholder="Enter Number of Engine" required>
                     </div>
 
                     <div class="mb-3">
@@ -35,9 +35,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <select class="form-select w-100" aria-label="Operator Airline" name = "op_airline" required>
-                                    <option selected>Select Operator Airline</option>
-                                    {% for airline in airlines %}
-                                        <option value={{airline.id}}>{{airline.name}}</option>                        
+                                    {% for airline in  airlines %}
+                                        {% if aircraft.operator_airline.name == airline.name%}
+                                            <option value = {{airline.id}} selected>{{aircraft.operator_airline.name}}</option>
+                                        {% else %}
+                                            <option value={{airline.id}}>{{airline.name}}</option>                        
+                                        {% endif %}
                                     {% endfor %}
                                   </select>
 
@@ -45,7 +48,7 @@
 
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">CREATE</button>
+                    <button type="submit" class="btn btn-primary">UPDATE</button>
                 </form>
             </div>
         </div>
