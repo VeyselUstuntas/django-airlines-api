@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 def user_login(request):
     if request.user.is_authenticated:
         return redirect("airline_list")
@@ -12,7 +13,12 @@ def user_login(request):
 
         if user is not None:
             login(request,user)
-            return redirect("airline_list")
+            nextUrl = request.GET.get("next",None)
+            if nextUrl is None:
+                return redirect("airline_list")
+            else:
+                return redirect(nextUrl)
+
         else:
             return render(request, "account/login.html",{"error":"username or password is wrong"})
     else:
@@ -31,7 +37,8 @@ def user_register(request):
             if User.objects.filter(email=email).exists():
                 return render(request, "account/register.html",{"error":"email kullanılmış","user_name":username, "email":email})
             else:
-                user = User.objects.create(is_superuser = True, username = username, email = email, password = password)
+                user = User.objects.create(is_superuser = True, is_staff = True , is_active = True, username = username, email = email, password = password)
+                user.set_password(password)
                 user.save()
                 return redirect("user_login")
         else:
@@ -40,6 +47,7 @@ def user_register(request):
     else:
         return render(request, "account/register.html")
 
+@login_required()
 def user_logout(request):
     if request.user.is_authenticated:
         logout(request)

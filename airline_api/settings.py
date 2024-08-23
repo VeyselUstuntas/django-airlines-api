@@ -139,5 +139,5 @@ REST_FRAMEWORK = {
 }
 
 # settings.py
-# LOGIN_URL = '/login/'
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = "/account/login"
+#LOGIN_REDIRECT_URL = '/account/login'

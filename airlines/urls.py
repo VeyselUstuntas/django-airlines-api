@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     
+    path("",views.airline_list, name="index"),
     path("airline/create-airline/",views.airline_create, name="airline_create"),
     path('airline/', views.airline_list, name="airline_list"),
     path("airline/edit-airline/<int:id>",views.airline_edit, name = "airline_edit"),
